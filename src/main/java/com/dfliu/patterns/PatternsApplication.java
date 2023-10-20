@@ -1,6 +1,9 @@
 package com.dfliu.patterns;
 
+import com.dfliu.patterns.domain.dto.Bread;
 import com.dfliu.patterns.domain.dto.Pizza;
+import com.dfliu.patterns.service.factory.abstractFactory.AbsPizzaPlusFactory;
+import com.dfliu.patterns.service.factory.abstractFactory.CheesePizzaPlusFactory;
 import com.dfliu.patterns.service.factory.factoryMethod.AbsPizzaFactory;
 import com.dfliu.patterns.service.factory.factoryMethod.CheesePizzaFactory;
 import com.dfliu.patterns.service.factory.simpleFactory.SimplePizzaFactory;
@@ -36,6 +39,21 @@ public class PatternsApplication implements CommandLineRunner {
         if (null != cheesePizza) {
             String pizzaName = cheesePizza.getName();
             System.out.println(pizzaName);
+        }
+
+        /**
+         * 抽象工厂模式示例
+         */
+        AbsPizzaPlusFactory cheesePizzaPlusFactory = new CheesePizzaPlusFactory();
+        Pizza pizza = cheesePizzaPlusFactory.createdPizza();
+        Bread bread = cheesePizzaPlusFactory.createBread();
+        if (null != pizza) {
+            String pizzaName = pizza.getPizzaName();
+            System.out.println(pizzaName);
+        }
+        if (null != bread) {
+            String breadName = bread.getBreadName();
+            System.out.println(breadName);
         }
     }
 }
