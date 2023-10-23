@@ -1,7 +1,11 @@
 package com.dfliu.patterns;
 
+import com.alibaba.fastjson.JSON;
 import com.dfliu.patterns.domain.dto.Bread;
+import com.dfliu.patterns.domain.dto.DecrorateHouse;
 import com.dfliu.patterns.domain.dto.Pizza;
+import com.dfliu.patterns.service.builder.AbsBuilder;
+import com.dfliu.patterns.service.builder.BBuilder;
 import com.dfliu.patterns.service.factory.abstractFactory.AbsPizzaPlusFactory;
 import com.dfliu.patterns.service.factory.abstractFactory.CheesePizzaPlusFactory;
 import com.dfliu.patterns.service.factory.factoryMethod.AbsPizzaFactory;
@@ -55,5 +59,12 @@ public class PatternsApplication implements CommandLineRunner {
             String breadName = bread.getBreadName();
             System.out.println(breadName);
         }
+
+        /**
+         * 建造者模式
+         */
+        AbsBuilder builder = new BBuilder();
+        DecrorateHouse house = builder.getHouse();
+        System.out.println(String.format("house:%s", JSON.toJSONString(house)));
     }
 }
