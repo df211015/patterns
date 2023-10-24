@@ -11,6 +11,7 @@ import com.dfliu.patterns.service.factory.abstractFactory.CheesePizzaPlusFactory
 import com.dfliu.patterns.service.factory.factoryMethod.AbsPizzaFactory;
 import com.dfliu.patterns.service.factory.factoryMethod.CheesePizzaFactory;
 import com.dfliu.patterns.service.factory.simpleFactory.SimplePizzaFactory;
+import com.dfliu.patterns.service.singleton.ProjConstants;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -66,5 +67,11 @@ public class PatternsApplication implements CommandLineRunner {
         AbsBuilder builder = new BBuilder();
         DecrorateHouse house = builder.getHouse();
         System.out.println(String.format("house:%s", JSON.toJSONString(house)));
+
+        /**
+         * 单例模式
+         */
+        ProjConstants instance = ProjConstants.getInstance();
+        System.out.println(String.format("ProjConstants实例:%s", JSON.toJSONString(instance)));
     }
 }
