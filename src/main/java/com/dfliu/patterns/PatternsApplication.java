@@ -11,6 +11,7 @@ import com.dfliu.patterns.service.factory.abstractFactory.CheesePizzaPlusFactory
 import com.dfliu.patterns.service.factory.factoryMethod.AbsPizzaFactory;
 import com.dfliu.patterns.service.factory.factoryMethod.CheesePizzaFactory;
 import com.dfliu.patterns.service.factory.simpleFactory.SimplePizzaFactory;
+import com.dfliu.patterns.service.prototype.Thing;
 import com.dfliu.patterns.service.singleton.ProjConstants;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -56,10 +57,6 @@ public class PatternsApplication implements CommandLineRunner {
             String pizzaName = pizza.getPizzaName();
             System.out.println(pizzaName);
         }
-        if (null != bread) {
-            String breadName = bread.getBreadName();
-            System.out.println(breadName);
-        }
 
         /**
          * 建造者模式
@@ -73,5 +70,11 @@ public class PatternsApplication implements CommandLineRunner {
          */
         ProjConstants instance = ProjConstants.getInstance();
         System.out.println(String.format("ProjConstants实例:%s", JSON.toJSONString(instance)));
+
+        /**
+         * 原型模式
+         */
+        Thing thing = new Thing();
+        Object clone = thing.clone();
     }
 }
