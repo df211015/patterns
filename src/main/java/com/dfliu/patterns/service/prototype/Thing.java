@@ -25,6 +25,10 @@ public class Thing implements Cloneable {
 
     private List<String> lst = new ArrayList<>();
 
+    public void addItem(String v) {
+        this.lst.add(v);
+    }
+
     @Override
     public Object clone() throws CloneNotSupportedException {
         Thing thing = (Thing) super.clone();
