@@ -18,6 +18,9 @@ import com.dfliu.patterns.service.singleton.ProjConstants;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 构建型模式
+ */
 @RestController
 @RequestMapping(value = "/factory")
 public class FactoryController extends BaseContoller {
