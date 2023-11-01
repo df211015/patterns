@@ -2,6 +2,10 @@ package com.dfliu.patterns.controller;
 
 import com.dfliu.patterns.domain.constants.ResultCode;
 import com.dfliu.patterns.domain.dto.Result;
+import com.dfliu.patterns.service.adapter.Adaptee;
+import com.dfliu.patterns.service.adapter.Adapter;
+import com.dfliu.patterns.service.adapter.IAdaptee;
+import com.dfliu.patterns.service.adapter.ITarget;
 import com.dfliu.patterns.service.decorate.AbsOilPaint;
 import com.dfliu.patterns.service.decorate.LivingRoom;
 import com.dfliu.patterns.service.decorate.Polish;
@@ -47,6 +51,23 @@ public class StructController extends BaseContoller {
         oilPaint.paint("郭师傅");
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "装饰模式示例");
+        return build;
+    }
+
+    /**
+     * 适配器模式示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "adapterPattern")
+    public Result<String> adapterPattern() {
+        IAdaptee adaptee = new Adaptee();
+        Adapter adapter = new Adapter();
+        adaptee.adapteeObj();
+        adapter.setAdaptee(adaptee);
+        adapter.targetObj();
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "适配器模式示例");
         return build;
     }
 }
