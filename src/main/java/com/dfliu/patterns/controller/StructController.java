@@ -6,6 +6,10 @@ import com.dfliu.patterns.service.adapter.Adaptee;
 import com.dfliu.patterns.service.adapter.Adapter;
 import com.dfliu.patterns.service.adapter.IAdaptee;
 import com.dfliu.patterns.service.adapter.ITarget;
+import com.dfliu.patterns.service.bridge.Abstraction;
+import com.dfliu.patterns.service.bridge.ConcreteImplementor;
+import com.dfliu.patterns.service.bridge.Implementor;
+import com.dfliu.patterns.service.bridge.RefinedAbstraction;
 import com.dfliu.patterns.service.decorate.AbsOilPaint;
 import com.dfliu.patterns.service.decorate.LivingRoom;
 import com.dfliu.patterns.service.decorate.Polish;
@@ -89,8 +93,22 @@ public class StructController extends BaseContoller {
         f02.operation(new UnsharedConcreteFlyweight("第2次调用a"));
         f03.operation(new UnsharedConcreteFlyweight("第3次调用a"));
 
-
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "享元模式示例");
+        return build;
+    }
+
+    /**
+     * 桥接模式示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "bridgePattern")
+    public Result<String> bridgePattern() {
+        Implementor implementor = new ConcreteImplementor();
+        Abstraction abstraction = new RefinedAbstraction(implementor);
+        abstraction.request();
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "桥接模式示例");
         return build;
     }
 }
