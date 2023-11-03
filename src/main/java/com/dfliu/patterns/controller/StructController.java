@@ -5,7 +5,6 @@ import com.dfliu.patterns.domain.dto.Result;
 import com.dfliu.patterns.service.adapter.Adaptee;
 import com.dfliu.patterns.service.adapter.Adapter;
 import com.dfliu.patterns.service.adapter.IAdaptee;
-import com.dfliu.patterns.service.adapter.ITarget;
 import com.dfliu.patterns.service.bridge.Abstraction;
 import com.dfliu.patterns.service.bridge.ConcreteImplementor;
 import com.dfliu.patterns.service.bridge.Implementor;
