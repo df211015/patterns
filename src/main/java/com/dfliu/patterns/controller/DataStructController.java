@@ -3,6 +3,7 @@ package com.dfliu.patterns.controller;
 import com.dfliu.patterns.domain.constants.ResultCode;
 import com.dfliu.patterns.domain.dto.Result;
 import com.dfliu.patterns.service.arrayQueue.ArrayQueue;
+import com.dfliu.patterns.service.arrayQueue.LinkQueue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class DataStructController extends BaseContoller {
 
     /**
-     * 队列示例
+     * 数组模拟队列示例
      *
      * @return
      */
-    @RequestMapping(value = "getQueue")
-    public Result<String> getQueue() {
+    @RequestMapping(value = "getArrQueue")
+    public Result<String> getArrQueue() {
         ArrayQueue arrayQueue = new ArrayQueue();
         //队列容量初始化
         arrayQueue.init(5);
@@ -30,7 +31,25 @@ public class DataStructController extends BaseContoller {
         Integer v = arrayQueue.pop();
         arrayQueue.push(8);
 
-        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "队列示例");
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "数组模拟队列示例");
+        return build;
+    }
+
+    /**
+     * 链表模拟队列示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "getLinkQueue")
+    public Result<String> getLinkQueue() {
+        LinkQueue linkQueue = new LinkQueue();
+        linkQueue.push(1);
+        linkQueue.push(2);
+        linkQueue.push(3);
+        linkQueue.push(4);
+        linkQueue.push(5);
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "链表模拟队列示例");
         return build;
     }
 }
