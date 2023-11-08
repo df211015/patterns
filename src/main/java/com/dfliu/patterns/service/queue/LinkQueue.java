@@ -1,4 +1,4 @@
-package com.dfliu.patterns.service.arrayQueue;
+package com.dfliu.patterns.service.queue;
 
 import com.dfliu.patterns.domain.dto.ListNode;
 

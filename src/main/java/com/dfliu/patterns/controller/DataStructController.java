@@ -2,8 +2,8 @@ package com.dfliu.patterns.controller;
 
 import com.dfliu.patterns.domain.constants.ResultCode;
 import com.dfliu.patterns.domain.dto.Result;
-import com.dfliu.patterns.service.arrayQueue.ArrayQueue;
-import com.dfliu.patterns.service.arrayQueue.LinkQueue;
+import com.dfliu.patterns.service.queue.ArrayQueue;
+import com.dfliu.patterns.service.queue.LinkQueue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

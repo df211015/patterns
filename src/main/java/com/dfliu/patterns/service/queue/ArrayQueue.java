@@ -1,4 +1,4 @@
-package com.dfliu.patterns.service.arrayQueue;
+package com.dfliu.patterns.service.queue;
 
 /**
  * 基于数组实现的环形队列
