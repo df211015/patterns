@@ -49,6 +49,10 @@ public class DataStructController extends BaseContoller {
         linkQueue.push(4);
         linkQueue.push(5);
 
+        Integer pop0 = linkQueue.pop();
+        Integer pop1 = linkQueue.pop();
+        Integer pop2 = linkQueue.pop();
+
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "链表模拟队列示例");
         return build;
     }
