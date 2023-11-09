@@ -9,6 +9,9 @@ import com.dfliu.patterns.service.bridge.Abstraction;
 import com.dfliu.patterns.service.bridge.ConcreteImplementor;
 import com.dfliu.patterns.service.bridge.Implementor;
 import com.dfliu.patterns.service.bridge.RefinedAbstraction;
+import com.dfliu.patterns.service.composite.Component;
+import com.dfliu.patterns.service.composite.Composite;
+import com.dfliu.patterns.service.composite.Leaf;
 import com.dfliu.patterns.service.decorate.AbsOilPaint;
 import com.dfliu.patterns.service.decorate.LivingRoom;
 import com.dfliu.patterns.service.decorate.Polish;
@@ -34,7 +37,7 @@ public class StructController extends BaseContoller {
      *
      * @return
      */
-    @RequestMapping(value = "proxyPattern")
+    @RequestMapping(value = "/proxyPattern")
     public Result<String> proxyPattern() {
         IDecorate worker = new GuoWorker();
         IDecorate decorate = new Proxy(worker);
@@ -49,7 +52,7 @@ public class StructController extends BaseContoller {
      *
      * @return
      */
-    @RequestMapping(value = "decoratePattern")
+    @RequestMapping(value = "/decoratePattern")
     public Result<String> decoratePattern() {
         AbsOilPaint oilPaint = new LivingRoom();
         oilPaint = new Polish(oilPaint);
@@ -65,7 +68,7 @@ public class StructController extends BaseContoller {
      *
      * @return
      */
-    @RequestMapping(value = "adapterPattern")
+    @RequestMapping(value = "/adapterPattern")
     public Result<String> adapterPattern() {
         IAdaptee adaptee = new Adaptee();
         Adapter adapter = new Adapter();
@@ -82,7 +85,7 @@ public class StructController extends BaseContoller {
      *
      * @return
      */
-    @RequestMapping(value = "flyweightPattern")
+    @RequestMapping(value = "/flyweightPattern")
     public Result<String> flyweightPattern() {
         FlyweightFactory factory = new FlyweightFactory();
         IFlyweight f01 = factory.getFlyweight("a");
@@ -101,13 +104,35 @@ public class StructController extends BaseContoller {
      *
      * @return
      */
-    @RequestMapping(value = "bridgePattern")
+    @RequestMapping(value = "/bridgePattern")
     public Result<String> bridgePattern() {
         Implementor implementor = new ConcreteImplementor();
         Abstraction abstraction = new RefinedAbstraction(implementor);
         abstraction.request();
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "桥接模式示例");
+        return build;
+    }
+
+    /**
+     * 组合模式示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/compositePattern")
+    public Result<String> compositePattern() {
+        Component root = new Composite("总纲");
+        Component group1 = new Composite("组1");
+        Component group2 = new Composite("组2");
+        root.add(group1);
+        root.add(group2);
+        Component item1 = new Leaf("结点1");
+        Component item2 = new Leaf("结点2");
+        group1.add(item1);
+        group1.add(item2);
+        root.display(0);
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "组合模式示例");
         return build;
     }
 }

@@ -16,7 +16,7 @@ public class DataStructController extends BaseContoller {
      *
      * @return
      */
-    @RequestMapping(value = "getArrQueue")
+    @RequestMapping(value = "/getArrQueue")
     public Result<String> getArrQueue() {
         ArrayQueue arrayQueue = new ArrayQueue();
         //队列容量初始化
@@ -40,7 +40,7 @@ public class DataStructController extends BaseContoller {
      *
      * @return
      */
-    @RequestMapping(value = "getLinkQueue")
+    @RequestMapping(value = "/getLinkQueue")
     public Result<String> getLinkQueue() {
         LinkQueue linkQueue = new LinkQueue();
         linkQueue.push(1);
