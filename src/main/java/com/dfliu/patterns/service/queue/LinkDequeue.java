@@ -61,12 +61,12 @@ public class LinkDequeue {
         if (isFront) {
             data = this.front.getData();
             this.front.getNext().setPre(null);
-            this.front.getNext().setNext(null);
+            this.front.setNext(null);
             this.front = this.front.getNext();
         } else {
             data = this.rear.getData();
-            this.rear.getPre().setPre(null);
             this.rear.getPre().setNext(null);
+            this.rear.setPre(null);
             this.rear = this.rear.getPre();
         }
         this.queSize--;
