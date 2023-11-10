@@ -3,6 +3,7 @@ package com.dfliu.patterns.controller;
 import com.dfliu.patterns.domain.constants.ResultCode;
 import com.dfliu.patterns.domain.dto.Result;
 import com.dfliu.patterns.service.queue.ArrayQueue;
+import com.dfliu.patterns.service.queue.LinkDequeue;
 import com.dfliu.patterns.service.queue.LinkQueue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,6 +55,26 @@ public class DataStructController extends BaseContoller {
         Integer pop2 = linkQueue.pop();
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "链表模拟队列示例");
+        return build;
+    }
+
+    /**
+     * 链表模拟双向队列示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "getLinkDequeue")
+    public Result<String> getLinkDequeue() {
+        LinkDequeue linkDequeue = new LinkDequeue();
+        linkDequeue.push(1, true);
+        linkDequeue.push(2, true);
+        linkDequeue.push(3, true);
+        linkDequeue.push(4, true);
+        linkDequeue.push(5, true);
+
+        Integer pop = linkDequeue.pop(true);
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "链表模拟双向队列示例");
         return build;
     }
 }
