@@ -59,8 +59,9 @@ public class ArrayDequeue {
             System.out.println("队列已满,入队失败!");
             return;
         }
-        Integer index = this.getIndex(this.front - 1);
-        this.nums[index] = v;
+        this.front = this.getIndex(this.front - 1);
+        this.nums[this.front] = v;
+
         this.queSize++;
     }
 

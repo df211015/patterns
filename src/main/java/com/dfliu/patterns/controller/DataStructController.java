@@ -2,6 +2,7 @@ package com.dfliu.patterns.controller;
 
 import com.dfliu.patterns.domain.constants.ResultCode;
 import com.dfliu.patterns.domain.dto.Result;
+import com.dfliu.patterns.service.queue.ArrayDequeue;
 import com.dfliu.patterns.service.queue.ArrayQueue;
 import com.dfliu.patterns.service.queue.LinkDequeue;
 import com.dfliu.patterns.service.queue.LinkQueue;
@@ -75,6 +76,28 @@ public class DataStructController extends BaseContoller {
         Integer pop = linkDequeue.pop(true);
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "链表模拟双向队列示例");
+        return build;
+    }
+
+    /**
+     * 数组模拟双向队列示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "getArrDequeue")
+    public Result<String> getArrDequeue() {
+        ArrayDequeue arrayDequeue = new ArrayDequeue(5);
+        arrayDequeue.pushFirst(1);
+        arrayDequeue.pushFirst(2);
+        arrayDequeue.pushFirst(3);
+        arrayDequeue.pushFirst(4);
+        arrayDequeue.pushFirst(5);
+        arrayDequeue.pushFirst(6);
+
+        Integer v = arrayDequeue.popLast();
+        arrayDequeue.pushFirst(6);
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "数组模拟双向队列示例");
         return build;
     }
 }
