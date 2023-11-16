@@ -1,7 +1,9 @@
 package com.dfliu.patterns.controller;
 
 import com.dfliu.patterns.domain.constants.ResultCode;
+import com.dfliu.patterns.domain.dto.Pair;
 import com.dfliu.patterns.domain.dto.Result;
+import com.dfliu.patterns.service.hash.ArrayHashMap;
 import com.dfliu.patterns.service.queue.ArrayDequeue;
 import com.dfliu.patterns.service.queue.ArrayQueue;
 import com.dfliu.patterns.service.queue.LinkDequeue;
@@ -64,7 +66,7 @@ public class DataStructController extends BaseContoller {
      *
      * @return
      */
-    @RequestMapping(value = "getLinkDequeue")
+    @RequestMapping(value = "/getLinkDequeue")
     public Result<String> getLinkDequeue() {
         LinkDequeue linkDequeue = new LinkDequeue();
         linkDequeue.push(1, true);
@@ -84,7 +86,7 @@ public class DataStructController extends BaseContoller {
      *
      * @return
      */
-    @RequestMapping(value = "getArrDequeue")
+    @RequestMapping(value = "/getArrDequeue")
     public Result<String> getArrDequeue() {
         ArrayDequeue arrayDequeue = new ArrayDequeue(5);
         arrayDequeue.pushFirst(1);
@@ -96,6 +98,28 @@ public class DataStructController extends BaseContoller {
 
         Integer v = arrayDequeue.popLast();
         arrayDequeue.pushFirst(6);
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "数组模拟双向队列示例");
+        return build;
+    }
+
+    /**
+     * 数据模拟hashMap
+     *
+     * @return
+     */
+    @RequestMapping(value = "/getArrHashMap")
+    public Result getArrHashMap() {
+        ArrayHashMap arrHashMap = new ArrayHashMap(100);
+        arrHashMap.put(new Pair(1, "aaa"));
+        arrHashMap.put(new Pair(2, "bbb"));
+        arrHashMap.put(new Pair(3, "ccc"));
+        arrHashMap.put(new Pair(4, "ddd"));
+        arrHashMap.put(new Pair(5, "eee"));
+
+        Integer key = 4;
+        String val = arrHashMap.get(key);
+        System.out.println(String.format("key:%s,val:%s", key, val));
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "数组模拟双向队列示例");
         return build;
