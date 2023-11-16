@@ -16,6 +16,7 @@ import com.dfliu.patterns.service.decorate.AbsOilPaint;
 import com.dfliu.patterns.service.decorate.LivingRoom;
 import com.dfliu.patterns.service.decorate.Polish;
 import com.dfliu.patterns.service.decorate.Putty;
+import com.dfliu.patterns.service.facade.Facade;
 import com.dfliu.patterns.service.flyweight.FlyweightFactory;
 import com.dfliu.patterns.service.flyweight.IFlyweight;
 import com.dfliu.patterns.service.flyweight.UnsharedConcreteFlyweight;
@@ -133,6 +134,20 @@ public class StructController extends BaseContoller {
         root.display(0);
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "组合模式示例");
+        return build;
+    }
+
+    /**
+     * 门面模式示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/facadePattern")
+    public Result<String> facadePattern() {
+        Facade facade = new Facade();
+        facade.doSomething();
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "门面模式示例");
         return build;
     }
 }
