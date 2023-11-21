@@ -17,7 +17,8 @@ public abstract class Handler {
             this.response(women);
         } else {
             if (null != this.nextHandler) {
-                this.handler(women);
+                //注意此处的调用对像,不要直接写成this.handler(women)
+                this.nextHandler.handler(women);
             } else {
                 System.out.println("没有相应的处理类!");
             }

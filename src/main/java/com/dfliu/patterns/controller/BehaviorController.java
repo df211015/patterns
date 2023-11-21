@@ -39,7 +39,7 @@ public class BehaviorController extends BaseContoller {
      */
     @RequestMapping(value = "/chainPattern")
     public Result<String> chainPattern() {
-        IWomen women = new Women(ResponseType.HUSBAND.getCode(), "我要去菜场");
+        IWomen women = new Women(ResponseType.FATHER.getCode(), "我要去超市");
         Handler son = new SonHandler();
         Handler husband = new HusbandHandler();
         Handler father = new FatherHandler();

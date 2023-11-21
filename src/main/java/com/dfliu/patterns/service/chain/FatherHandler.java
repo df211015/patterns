@@ -9,7 +9,8 @@ public class FatherHandler extends Handler {
 
     @Override
     public void response(IWomen women) {
-        System.out.println(String.format("女儿向父亲的请求:%s", women.getRequest()));
+        System.out.println("---女儿向父亲的请求---");
+        System.out.println(women.getRequest());
         System.out.println(String.format("父亲的回复是:%s", "同意"));
     }
 }
