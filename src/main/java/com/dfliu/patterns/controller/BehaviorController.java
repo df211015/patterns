@@ -1,9 +1,12 @@
 package com.dfliu.patterns.controller;
 
+import com.dfliu.patterns.domain.constants.EState;
 import com.dfliu.patterns.domain.constants.ResponseType;
 import com.dfliu.patterns.domain.constants.ResultCode;
 import com.dfliu.patterns.domain.dto.Result;
 import com.dfliu.patterns.service.chain.*;
+import com.dfliu.patterns.service.state.ChildWorkState;
+import com.dfliu.patterns.service.state.WorkState;
 import com.dfliu.patterns.service.strategy.ConcreteStrategy2;
 import com.dfliu.patterns.service.strategy.Context;
 import jdk.internal.org.objectweb.asm.Handle;
@@ -48,6 +51,23 @@ public class BehaviorController extends BaseContoller {
         son.handler(women);
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "职责链模式示例");
+        return build;
+    }
+
+    /**
+     * 状态模式示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/statePattern")
+    public Result<String> statePattern() {
+        com.dfliu.patterns.service.state.Context context = new com.dfliu.patterns.service.state.Context();
+        context.setCurrentByState(EState.CHILD);
+        context.work();
+        context.work();
+        context.work();
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "状态模式示例");
         return build;
     }
 }
