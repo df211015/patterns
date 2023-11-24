@@ -3,6 +3,7 @@ package com.dfliu.patterns.controller;
 import com.dfliu.patterns.domain.constants.ResultCode;
 import com.dfliu.patterns.domain.dto.Pair;
 import com.dfliu.patterns.domain.dto.Result;
+import com.dfliu.patterns.service.binaryTree.BinaryTree;
 import com.dfliu.patterns.service.hash.ArrayHashMap;
 import com.dfliu.patterns.service.queue.ArrayDequeue;
 import com.dfliu.patterns.service.queue.ArrayQueue;
@@ -125,5 +126,18 @@ public class DataStructController extends BaseContoller {
         return build;
     }
 
+    /**
+     * 打印二叉树
+     *
+     * @return
+     */
+    @RequestMapping(value = "showBinaryTree")
+    public Result<String> showBinaryTree() {
+        BinaryTree binaryTree = new BinaryTree();
+        binaryTree.initTree();
+        binaryTree.postOrderTraversal(binaryTree.getHead());
 
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "打印二叉树");
+        return build;
+    }
 }

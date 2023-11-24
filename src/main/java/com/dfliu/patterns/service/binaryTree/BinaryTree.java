@@ -8,6 +8,10 @@ import com.dfliu.patterns.domain.dto.TreeNode;
 public class BinaryTree {
     private TreeNode<Integer> head = null;
 
+    public TreeNode<Integer> getHead() {
+        return head;
+    }
+
     /**
      * 初始化二叉树
      */
@@ -31,7 +35,37 @@ public class BinaryTree {
         this.head = node01;
     }
 
-    public void showTree(TreeNode<Integer> node) {
-        //todo
+    /**
+     * 前序遍历
+     *
+     * @param node
+     */
+    public void preOrderTraversal(TreeNode<Integer> node) {
+        if (null != node) {
+            System.out.println(String.format("node.data=%s", node.getData()));
+            this.preOrderTraversal(node.getLeft());
+            this.preOrderTraversal(node.getRight());
+        }
+    }
+
+    /**
+     * 中序遍历
+     *
+     * @param node
+     */
+    public void midOrderTraversal(TreeNode<Integer> node) {
+        if (null != node) {
+            this.midOrderTraversal(node.getLeft());
+            System.out.println(String.format("node.data=%s", node.getData()));
+            this.midOrderTraversal(node.getRight());
+        }
+    }
+
+    public void postOrderTraversal(TreeNode<Integer> node) {
+        if (null != node) {
+            this.postOrderTraversal(node.getLeft());
+            this.postOrderTraversal(node.getRight());
+            System.out.println(String.format("node.data=%s", node.getData()));
+        }
     }
 }
