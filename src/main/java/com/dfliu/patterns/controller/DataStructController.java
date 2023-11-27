@@ -135,6 +135,11 @@ public class DataStructController extends BaseContoller {
     public Result<String> showBinaryTree() {
         BinaryTree binaryTree = new BinaryTree();
         binaryTree.initTree();
+        //二叉树的广度遍历
+        binaryTree.levelOrderTraversal(binaryTree.getHead());
+        //二叉树的深度遍历
+        binaryTree.preOrderTraversal(binaryTree.getHead());
+        binaryTree.midOrderTraversal(binaryTree.getHead());
         binaryTree.postOrderTraversal(binaryTree.getHead());
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "打印二叉树");
