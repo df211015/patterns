@@ -5,6 +5,10 @@ import com.dfliu.patterns.domain.constants.ResponseType;
 import com.dfliu.patterns.domain.constants.ResultCode;
 import com.dfliu.patterns.domain.dto.Result;
 import com.dfliu.patterns.service.chain.*;
+import com.dfliu.patterns.service.command.AbsCommand;
+import com.dfliu.patterns.service.command.ConcreteCommand;
+import com.dfliu.patterns.service.command.ConcreteReceive;
+import com.dfliu.patterns.service.command.IReceive;
 import com.dfliu.patterns.service.state.ChildWorkState;
 import com.dfliu.patterns.service.state.WorkState;
 import com.dfliu.patterns.service.strategy.ConcreteStrategy2;
@@ -68,6 +72,21 @@ public class BehaviorController extends BaseContoller {
         context.work();
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "状态模式示例");
+        return build;
+    }
+
+    /**
+     * 命令模式示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/commandPattern")
+    public Result<String> commandPattern() {
+        IReceive receive = new ConcreteReceive();
+        AbsCommand command = new ConcreteCommand(receive);
+        command.order("place an order");
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "命令模式示例");
         return build;
     }
 }
