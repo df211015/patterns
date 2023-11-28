@@ -3,7 +3,8 @@ package com.dfliu.patterns.controller;
 import com.dfliu.patterns.domain.constants.ResultCode;
 import com.dfliu.patterns.domain.dto.Pair;
 import com.dfliu.patterns.domain.dto.Result;
-import com.dfliu.patterns.service.binaryTree.BinaryTree;
+import com.dfliu.patterns.service.binaryTree.BinaryTreeOfArr;
+import com.dfliu.patterns.service.binaryTree.BinaryTreeOfLink;
 import com.dfliu.patterns.service.hash.ArrayHashMap;
 import com.dfliu.patterns.service.queue.ArrayDequeue;
 import com.dfliu.patterns.service.queue.ArrayQueue;
@@ -11,6 +12,9 @@ import com.dfliu.patterns.service.queue.LinkDequeue;
 import com.dfliu.patterns.service.queue.LinkQueue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/dataStruct")
@@ -127,25 +131,56 @@ public class DataStructController extends BaseContoller {
     }
 
     /**
-     * 打印二叉树
+     * 链表表示的二叉树
      *
      * @return
      */
-    @RequestMapping(value = "showBinaryTree")
-    public Result<String> showBinaryTree() {
-        BinaryTree binaryTree = new BinaryTree();
-        binaryTree.initTree();
+    @RequestMapping(value = "showBinaryTreeOfLink")
+    public Result<String> showBinaryTreeOfLink() {
+        BinaryTreeOfLink binaryTreeOfLink = new BinaryTreeOfLink();
+        binaryTreeOfLink.initTree();
         //二叉树的广度遍历
-        binaryTree.levelOrderTraversal(binaryTree.getHead());
+        binaryTreeOfLink.levelOrderTraversal(binaryTreeOfLink.getHead());
 
         //二叉树的深度遍历.前序
-        binaryTree.preOrderTraversal(binaryTree.getHead());
+        binaryTreeOfLink.preOrderTraversal(binaryTreeOfLink.getHead());
         //二叉树的深度遍历.中序
-        binaryTree.midOrderTraversal(binaryTree.getHead());
+        binaryTreeOfLink.midOrderTraversal(binaryTreeOfLink.getHead());
         //二叉树的深度遍历.后序
-        binaryTree.postOrderTraversal(binaryTree.getHead());
+        binaryTreeOfLink.postOrderTraversal(binaryTreeOfLink.getHead());
 
-        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "打印二叉树");
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "链表表示的二叉树");
+        return build;
+    }
+
+    /**
+     * 数组表示的二叉树
+     *
+     * @return
+     */
+    @RequestMapping(value = "showBinaryTreeOfArr")
+    public Result<String> showBinaryTreeOfArr() {
+        List<Integer> arr = new ArrayList<>();
+        arr.add(1); //1,2
+        arr.add(2); //3,4
+        arr.add(3); //5,6
+        arr.add(4); //7,8
+        arr.add(5); //9,10
+        arr.add(6); //11,12
+        arr.add(7); //13,14
+        arr.add(8); //15,16
+        BinaryTreeOfArr<Integer> binaryTreeOfArr = new BinaryTreeOfArr<>(arr);
+        //前序遍历
+        binaryTreeOfArr.preOrderTraversal(0);
+        System.out.println("---前序遍历结束-----------");
+        //中序遍历
+        binaryTreeOfArr.midOrderTraversal(0);
+        System.out.println("---中序遍历结束-----------");
+        //后序遍历
+        binaryTreeOfArr.postOrderTraversal(0);
+        System.out.println("---后序遍历结束-----------");
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "数组表示的二叉树");
         return build;
     }
 }

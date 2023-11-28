@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * 二叉树类
  */
-public class BinaryTree {
+public class BinaryTreeOfLink {
     private TreeNode<Integer> head = null;
 
     public TreeNode<Integer> getHead() {
