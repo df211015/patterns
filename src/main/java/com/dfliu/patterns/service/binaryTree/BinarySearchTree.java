@@ -31,7 +31,7 @@ public class BinarySearchTree {
     }
 
     /**
-     * 插入节点
+     * 插入节点,只会以叶子节点的形式插入
      *
      * @param data
      */

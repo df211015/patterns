@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class TreeNode<T> {
+    //节点高度
+    private Integer height;
     private T data;
     private TreeNode<T> left;
     private TreeNode<T> right;
