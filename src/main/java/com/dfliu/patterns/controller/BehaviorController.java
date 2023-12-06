@@ -9,6 +9,7 @@ import com.dfliu.patterns.service.command.AbsCommand;
 import com.dfliu.patterns.service.command.ConcreteCommand;
 import com.dfliu.patterns.service.command.ConcreteReceive;
 import com.dfliu.patterns.service.command.IReceive;
+import com.dfliu.patterns.service.mediator.*;
 import com.dfliu.patterns.service.state.ChildWorkState;
 import com.dfliu.patterns.service.state.WorkState;
 import com.dfliu.patterns.service.strategy.ConcreteStrategy2;
@@ -87,6 +88,25 @@ public class BehaviorController extends BaseContoller {
         command.order("place an order");
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "命令模式示例");
+        return build;
+    }
+
+    /**
+     * 中介者模式示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/mediatorPattern")
+    public Result<String> mediatorPattern() {
+        Mediator mediator = new ConcreteMediator();
+        Colleague colleague1 = new ConcreteColleague1(mediator);
+        Colleague colleague2 = new ConcreteColleague2(mediator);
+        mediator.setConcreteColleague1(colleague1);
+        mediator.setConcreteColleague2(colleague2);
+        colleague1.dosomething();
+        colleague2.dosomething();
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "中介者模式示例");
         return build;
     }
 }
