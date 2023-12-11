@@ -14,6 +14,8 @@ import com.dfliu.patterns.service.state.ChildWorkState;
 import com.dfliu.patterns.service.state.WorkState;
 import com.dfliu.patterns.service.strategy.ConcreteStrategy2;
 import com.dfliu.patterns.service.strategy.Context;
+import com.dfliu.patterns.service.template.AbsAnimal;
+import com.dfliu.patterns.service.template.Dog;
 import jdk.internal.org.objectweb.asm.Handle;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -107,6 +109,20 @@ public class BehaviorController extends BaseContoller {
         colleague2.dosomething();
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "中介者模式示例");
+        return build;
+    }
+
+    /**
+     * 模板方法模式示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/templatePattern")
+    public Result<String> templatePattern() {
+        AbsAnimal dog = new Dog();
+        dog.showAnimalInfo();
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "模板方法模式示例");
         return build;
     }
 }

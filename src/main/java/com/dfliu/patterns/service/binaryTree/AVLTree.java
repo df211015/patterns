@@ -27,4 +27,21 @@ public class AVLTree {
         }
         return this.getHeight(node.getLeft()) - this.getHeight(node.getRight());
     }
+
+    /**
+     * 右旋操作
+     *
+     * @param node
+     * @return
+     */
+    public TreeNode<Integer> rightRotate(TreeNode<Integer> node) {
+        TreeNode<Integer> child = node.getLeft();
+        TreeNode<Integer> grandChild = child.getRight();
+        child.setRight(node);
+        node.setLeft(grandChild);
+        this.updateHeight(node);
+        this.updateHeight(child);
+
+        return child;
+    }
 }
