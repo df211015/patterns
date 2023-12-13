@@ -31,14 +31,31 @@ public class AVLTree {
     /**
      * 右旋操作
      *
-     * @param node
-     * @return
+     * @param node 失衡节点
+     * @return 返回调整后的局部子树根节点
      */
     public TreeNode<Integer> rightRotate(TreeNode<Integer> node) {
         TreeNode<Integer> child = node.getLeft();
         TreeNode<Integer> grandChild = child.getRight();
         child.setRight(node);
         node.setLeft(grandChild);
+        this.updateHeight(node);
+        this.updateHeight(child);
+
+        return child;
+    }
+
+    /**
+     * 左旋操作
+     *
+     * @param node 失衡节点
+     * @return 返回调整后的局部子树根节点
+     */
+    public TreeNode<Integer> leftRotate(TreeNode<Integer> node) {
+        TreeNode<Integer> child = node.getRight();
+        TreeNode<Integer> grandChild = child.getLeft();
+        child.setLeft(node);
+        node.setRight(grandChild);
         this.updateHeight(node);
         this.updateHeight(child);
 
