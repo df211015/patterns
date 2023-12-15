@@ -14,11 +14,16 @@ import com.dfliu.patterns.service.state.ChildWorkState;
 import com.dfliu.patterns.service.state.WorkState;
 import com.dfliu.patterns.service.strategy.ConcreteStrategy2;
 import com.dfliu.patterns.service.strategy.Context;
+import com.dfliu.patterns.service.subscribe.ObserverOf163;
+import com.dfliu.patterns.service.subscribe.SubjectOf163;
 import com.dfliu.patterns.service.template.AbsAnimal;
 import com.dfliu.patterns.service.template.Dog;
 import jdk.internal.org.objectweb.asm.Handle;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * 行为型模式
@@ -123,6 +128,22 @@ public class BehaviorController extends BaseContoller {
         dog.showAnimalInfo();
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "模板方法模式示例");
+        return build;
+    }
+
+    /**
+     * 观察者模式示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/subscribePattern")
+    public Result<String> subscribePattern() {
+        SubjectOf163 subjectOf163 = new SubjectOf163();
+        Observer observerOf163 = new ObserverOf163();
+        subjectOf163.addObserver(observerOf163);
+        subjectOf163.sendCheckCode("12345678901");
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "观察者模式示例");
         return build;
     }
 }
