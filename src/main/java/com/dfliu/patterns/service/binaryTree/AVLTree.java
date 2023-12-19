@@ -61,4 +61,36 @@ public class AVLTree {
 
         return child;
     }
+
+    /**
+     * 执行旋转操作,使该子树重新恢复平衡
+     *
+     * @param node
+     * @return
+     */
+    public TreeNode<Integer> rotate(TreeNode<Integer> node) {
+        Integer balanceFactor = this.getBalanceFactor(node);
+        //左偏树
+        if (balanceFactor > 1) {
+            if (this.getBalanceFactor(node.getLeft()) >= 0) {
+                return this.rightRotate(node);
+            } else {
+                TreeNode<Integer> integerTreeNode = this.leftRotate(node.getLeft());
+                node.setLeft(integerTreeNode);
+                return this.rightRotate(node);
+            }
+        }
+        //右偏树
+        if (balanceFactor < -1) {
+            if (this.getBalanceFactor(node.getRight()) <= 0) {
+                return this.leftRotate(node);
+            } else {
+                TreeNode<Integer> integerTreeNode = this.rightRotate(node.getRight());
+                node.setRight(integerTreeNode);
+                return this.leftRotate(node);
+            }
+        }
+
+        return node;
+    }
 }
