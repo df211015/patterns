@@ -10,6 +10,9 @@ import com.dfliu.patterns.service.command.ConcreteCommand;
 import com.dfliu.patterns.service.command.ConcreteReceive;
 import com.dfliu.patterns.service.command.IReceive;
 import com.dfliu.patterns.service.mediator.*;
+import com.dfliu.patterns.service.memento.Caretaker;
+import com.dfliu.patterns.service.memento.Memento;
+import com.dfliu.patterns.service.memento.Originator;
 import com.dfliu.patterns.service.state.ChildWorkState;
 import com.dfliu.patterns.service.state.WorkState;
 import com.dfliu.patterns.service.strategy.ConcreteStrategy2;
@@ -144,6 +147,28 @@ public class BehaviorController extends BaseContoller {
         subjectOf163.sendCheckCode("12345678901");
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "观察者模式示例");
+        return build;
+    }
+
+    /**
+     * 涉及角色:发起人(Originator)角色、备忘录(Memento)角色、负责人(Caretaker)角色
+     * 最终的数据呈现还是通过发起人(Originator)角色来体现
+     *
+     * @return
+     */
+    @RequestMapping(value = "/mementoPattern")
+    public Result<String> mementoPattern() {
+        Originator originator = new Originator();
+        originator.setData("第1次初始化");
+        Memento mementoOfFirst = originator.createMemento();
+        Caretaker caretaker = new Caretaker();
+        caretaker.setMemento(mementoOfFirst);
+        originator.setData("第2次初始化");
+        System.out.println(String.format("originator最新数据:%s", originator.getData()));
+        originator.restoreMemento(caretaker.getMemento());
+        System.out.println(String.format("originator最新数据:%s", originator.getData()));
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "备忘录模式示例");
         return build;
     }
 }
