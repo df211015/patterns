@@ -6,6 +6,9 @@ import com.dfliu.patterns.domain.dto.TreeNode;
  * AVL树的相关操作
  */
 public class AVLTree {
+
+    private TreeNode<Integer> root;
+
     public Integer getHeight(TreeNode<Integer> node) {
         return (null == node) ? -1 : node.getHeight();
     }
@@ -92,5 +95,36 @@ public class AVLTree {
         }
 
         return node;
+    }
+
+    public void insert(Integer val) {
+        this.root = this.insertHelper(this.root, val);
+    }
+
+    public void remove(Integer val) {
+        this.root = this.removeHelper(this.root, val);
+    }
+
+    private TreeNode insertHelper(TreeNode<Integer> node, Integer val) {
+        if (null == node) {
+            return new TreeNode<Integer>(val);
+        }
+        if (val < node.getData()) {
+            TreeNode<Integer> treeNodeOfLeft = this.insertHelper(node.getLeft(), val);
+            node.setLeft(treeNodeOfLeft);
+        } else if (val > node.getData()) {
+            TreeNode<Integer> treeNodeOfRight = this.insertHelper(node.getRight(), val);
+            node.setRight(treeNodeOfRight);
+        } else {
+            return node;
+        }
+        this.updateHeight(node);
+        node = this.rotate(node);
+
+        return node;
+    }
+
+    private TreeNode<Integer> removeHelper(TreeNode<Integer> node, Integer val) {
+        return null;
     }
 }
