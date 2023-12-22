@@ -17,17 +17,17 @@ public abstract class Employee {
         this.salary = salary;
     }
 
-    public Integer getDesc() {
+    public String getDesc() {
         return desc;
     }
 
-    public void setDesc(Integer desc) {
+    public void setDesc(String desc) {
         this.desc = desc;
     }
 
     public String userName;
     private Integer salary;
-    private Integer desc;
+    private String desc;
 
     /**
      * 定义访问者方法

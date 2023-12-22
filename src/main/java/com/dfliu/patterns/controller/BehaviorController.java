@@ -21,6 +21,7 @@ import com.dfliu.patterns.service.subscribe.ObserverOf163;
 import com.dfliu.patterns.service.subscribe.SubjectOf163;
 import com.dfliu.patterns.service.template.AbsAnimal;
 import com.dfliu.patterns.service.template.Dog;
+import com.dfliu.patterns.service.visitor.*;
 import jdk.internal.org.objectweb.asm.Handle;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -169,6 +170,31 @@ public class BehaviorController extends BaseContoller {
         System.out.println(String.format("originator最新数据:%s", originator.getData()));
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "备忘录模式示例");
+        return build;
+    }
+
+    /**
+     * 访问者模式示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/visitorPattern")
+    public Result<String> visitorPattern() {
+        CommonEmployee commonEmployee = new CommonEmployee();
+        commonEmployee.setUserName("员工001");
+        commonEmployee.setSalary(5000);
+        commonEmployee.setDesc("北京科技公司");
+        commonEmployee.setJobName("研发岗位");
+        Manager manager = new Manager();
+        manager.setUserName("研发经理001");
+        manager.setSalary(8000);
+        manager.setDesc("北京科技公司");
+        manager.setPerformance("绩效A");
+        IVisitor visitor = new Visitor();
+        commonEmployee.accept(visitor);
+        manager.accept(visitor);
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "访问者模式示例");
         return build;
     }
 }
