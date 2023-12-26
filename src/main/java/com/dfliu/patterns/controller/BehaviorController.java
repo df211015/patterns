@@ -9,6 +9,9 @@ import com.dfliu.patterns.service.command.AbsCommand;
 import com.dfliu.patterns.service.command.ConcreteCommand;
 import com.dfliu.patterns.service.command.ConcreteReceive;
 import com.dfliu.patterns.service.command.IReceive;
+import com.dfliu.patterns.service.interpreter.AndExpression;
+import com.dfliu.patterns.service.interpreter.Expression;
+import com.dfliu.patterns.service.interpreter.TerminalExpression;
 import com.dfliu.patterns.service.mediator.*;
 import com.dfliu.patterns.service.memento.Caretaker;
 import com.dfliu.patterns.service.memento.Memento;
@@ -195,6 +198,23 @@ public class BehaviorController extends BaseContoller {
         manager.accept(visitor);
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "访问者模式示例");
+        return build;
+    }
+
+    /**
+     * 解释器模式示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/interpretPattern")
+    public Result<String> interpretPattern() {
+        Expression left = new TerminalExpression("music");
+        Expression right = new TerminalExpression("art");
+        AndExpression andExpression = new AndExpression(left, right);
+        boolean musicAndMath = andExpression.interpret("music and art");
+        System.out.println(String.format("musicAndMath:%s", musicAndMath ? "匹配" : "不匹配"));
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "解释器模式示例");
         return build;
     }
 }
