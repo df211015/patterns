@@ -2,6 +2,7 @@ package com.dfliu.patterns.controller;
 
 import com.dfliu.patterns.domain.constants.ResultCode;
 import com.dfliu.patterns.domain.dto.Result;
+import com.dfliu.patterns.domain.dto.User;
 import com.dfliu.patterns.service.adapter.Adaptee;
 import com.dfliu.patterns.service.adapter.Adapter;
 import com.dfliu.patterns.service.adapter.IAdaptee;
@@ -23,8 +24,12 @@ import com.dfliu.patterns.service.flyweight.UnsharedConcreteFlyweight;
 import com.dfliu.patterns.service.proxy.GuoWorker;
 import com.dfliu.patterns.service.proxy.IDecorate;
 import com.dfliu.patterns.service.proxy.Proxy;
+import com.dfliu.patterns.service.specification.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 结构型模式
@@ -148,6 +153,31 @@ public class StructController extends BaseContoller {
         facade.doSomething();
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "门面模式示例");
+        return build;
+    }
+
+    /**
+     * 规格模式示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/specificationPattern")
+    public Result<String> specificationPattern() {
+        List<User> userList = new ArrayList<>();
+        userList.add(new User("格桑01", 23));
+        userList.add(new User("格桑02", 33));
+        userList.add(new User("格桑03", 43));
+        userList.add(new User("格桑04", 25));
+        userList.add(new User("格桑05", 48));
+        IUserProvider userProvider = new UserProvider(userList);
+        IUserSpecification spec = new UserByNameEqual("格桑04");
+        IUserSpecification spec2 = new UserByAgeThan(23);
+        List<User> resList = userProvider.findUser(spec.and(spec2));
+        for (User user : resList) {
+            System.out.println(user.toString());
+        }
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "规格模式示例");
         return build;
     }
 }
