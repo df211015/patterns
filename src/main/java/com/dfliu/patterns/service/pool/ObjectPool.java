@@ -1,5 +1,7 @@
 package com.dfliu.patterns.service.pool;
 
+import com.dfliu.patterns.domain.constants.EPoolObjStatus;
+
 import java.util.Hashtable;
 
 public abstract class ObjectPool<T> {
@@ -37,18 +39,20 @@ public abstract class ObjectPool<T> {
     }
 
     class ObjectStatus {
+        private Integer status = EPoolObjStatus.free.getCode();
+
         /**
          * 占用
          */
         public void setUsing() {
-            //todo
+            this.status = EPoolObjStatus.using.getCode();
         }
 
         /**
          * 释放
          */
         public void setFree() {
-            //todo
+            this.status = EPoolObjStatus.free.getCode();
         }
 
         /**
@@ -57,10 +61,17 @@ public abstract class ObjectPool<T> {
          * @return
          */
         public boolean validate() {
-            //todo
+            if (EPoolObjStatus.free.getCode().equals(this.status)) {
+                return true;
+            }
             return false;
         }
     }
 
+    /**
+     * 创建缓存对像
+     *
+     * @return
+     */
     public abstract T createObj();
 }

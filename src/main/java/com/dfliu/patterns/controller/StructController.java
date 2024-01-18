@@ -1,5 +1,6 @@
 package com.dfliu.patterns.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.dfliu.patterns.domain.constants.ResultCode;
 import com.dfliu.patterns.domain.dto.Result;
 import com.dfliu.patterns.domain.dto.User;
@@ -21,6 +22,8 @@ import com.dfliu.patterns.service.facade.Facade;
 import com.dfliu.patterns.service.flyweight.FlyweightFactory;
 import com.dfliu.patterns.service.flyweight.IFlyweight;
 import com.dfliu.patterns.service.flyweight.UnsharedConcreteFlyweight;
+import com.dfliu.patterns.service.pool.ConcreteCacheObj;
+import com.dfliu.patterns.service.pool.ObjectPool;
 import com.dfliu.patterns.service.proxy.GuoWorker;
 import com.dfliu.patterns.service.proxy.IDecorate;
 import com.dfliu.patterns.service.proxy.Proxy;
@@ -178,6 +181,21 @@ public class StructController extends BaseContoller {
         }
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "规格模式示例");
+        return build;
+    }
+
+    /**
+     * 对像池模式示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/poolPattern")
+    public Result<String> poolPattern() {
+        ObjectPool<User> objPool = new ConcreteCacheObj();
+        User user = objPool.checkOut();
+        System.out.println(String.format("缓存对像信息:%s", JSON.toJSONString(user)));
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "对像池模式示例");
         return build;
     }
 }
