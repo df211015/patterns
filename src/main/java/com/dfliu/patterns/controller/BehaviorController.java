@@ -16,6 +16,9 @@ import com.dfliu.patterns.service.mediator.*;
 import com.dfliu.patterns.service.memento.Caretaker;
 import com.dfliu.patterns.service.memento.Memento;
 import com.dfliu.patterns.service.memento.Originator;
+import com.dfliu.patterns.service.servant.IServiced;
+import com.dfliu.patterns.service.servant.Servant;
+import com.dfliu.patterns.service.servant.Service1;
 import com.dfliu.patterns.service.state.ChildWorkState;
 import com.dfliu.patterns.service.state.WorkState;
 import com.dfliu.patterns.service.strategy.ConcreteStrategy2;
@@ -215,6 +218,21 @@ public class BehaviorController extends BaseContoller {
         System.out.println(String.format("musicAndMath:%s", musicAndMath ? "匹配" : "不匹配"));
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "解释器模式示例");
+        return build;
+    }
+
+    /**
+     * 雇工模式示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/servantPattern")
+    public Result<String> servantPattern() {
+        IServiced serivice = new Service1();
+        Servant servant = new Servant();
+        servant.service(serivice);
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "雇工模式示例");
         return build;
     }
 }
