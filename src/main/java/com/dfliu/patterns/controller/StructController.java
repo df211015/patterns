@@ -18,6 +18,8 @@ import com.dfliu.patterns.service.decorate.AbsOilPaint;
 import com.dfliu.patterns.service.decorate.LivingRoom;
 import com.dfliu.patterns.service.decorate.Polish;
 import com.dfliu.patterns.service.decorate.Putty;
+import com.dfliu.patterns.service.empty.Animal;
+import com.dfliu.patterns.service.empty.NullAnimal;
 import com.dfliu.patterns.service.facade.Facade;
 import com.dfliu.patterns.service.flyweight.FlyweightFactory;
 import com.dfliu.patterns.service.flyweight.IFlyweight;
@@ -196,6 +198,21 @@ public class StructController extends BaseContoller {
         System.out.println(String.format("缓存对像信息:%s", JSON.toJSONString(user)));
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "对像池模式示例");
+        return build;
+    }
+
+    /**
+     * 空对像模式示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/nullPattern")
+    public Result<String> nullPattern() {
+        //不再需要通过null == object的方式,代码更为优雅
+        Animal nullAnimal = new NullAnimal();
+        nullAnimal.makeSound();
+
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "空对像模式示例");
         return build;
     }
 }
