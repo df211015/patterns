@@ -2,6 +2,9 @@ package com.dfliu.patterns.service.specification;
 
 import com.dfliu.patterns.domain.dto.User;
 
+/**
+ * 局部2
+ */
 public class NotSpecification extends AbsCompositeSpecification {
     private IUserSpecification spec;
 

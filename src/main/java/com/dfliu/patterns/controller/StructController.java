@@ -175,6 +175,7 @@ public class StructController extends BaseContoller {
         userList.add(new User("格桑04", 25));
         userList.add(new User("格桑05", 48));
         IUserProvider userProvider = new UserProvider(userList);
+        //组合模式,解决局部和整体的问题
         IUserSpecification spec = new UserByNameEqual("格桑04");
         IUserSpecification spec2 = new UserByAgeThan(23);
         List<User> resList = userProvider.findUser(spec.and(spec2));

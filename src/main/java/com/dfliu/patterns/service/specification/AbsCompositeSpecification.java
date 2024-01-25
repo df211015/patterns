@@ -2,6 +2,9 @@ package com.dfliu.patterns.service.specification;
 
 import com.dfliu.patterns.domain.dto.User;
 
+/**
+ * 整体
+ */
 public abstract class AbsCompositeSpecification implements IUserSpecification {
 
     public abstract boolean isSatisfiedBy(User user);
