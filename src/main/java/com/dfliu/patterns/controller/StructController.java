@@ -21,6 +21,7 @@ import com.dfliu.patterns.service.decorate.Putty;
 import com.dfliu.patterns.service.empty.Animal;
 import com.dfliu.patterns.service.empty.NullAnimal;
 import com.dfliu.patterns.service.facade.Facade;
+import com.dfliu.patterns.service.facade.plus.ShapeMaker;
 import com.dfliu.patterns.service.flyweight.FlyweightFactory;
 import com.dfliu.patterns.service.flyweight.IFlyweight;
 import com.dfliu.patterns.service.flyweight.UnsharedConcreteFlyweight;
@@ -154,8 +155,14 @@ public class StructController extends BaseContoller {
      */
     @RequestMapping(value = "/facadePattern")
     public Result<String> facadePattern() {
-        Facade facade = new Facade();
-        facade.doSomething();
+//        //门面模式01
+//        Facade facade = new Facade();
+//        facade.doSomething();
+
+        //门面模式02
+        ShapeMaker shapeMaker = new ShapeMaker();
+        shapeMaker.drawCircle();
+        shapeMaker.drawRectangle();
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "门面模式示例");
         return build;
