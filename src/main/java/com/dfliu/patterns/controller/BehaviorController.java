@@ -21,6 +21,7 @@ import com.dfliu.patterns.service.servant.Servant;
 import com.dfliu.patterns.service.servant.Service1;
 import com.dfliu.patterns.service.state.ChildWorkState;
 import com.dfliu.patterns.service.state.WorkState;
+import com.dfliu.patterns.service.state.plus.MediaPlayer;
 import com.dfliu.patterns.service.strategy.ConcreteStrategy2;
 import com.dfliu.patterns.service.strategy.Context;
 import com.dfliu.patterns.service.subscribe.ObserverOf163;
@@ -83,11 +84,18 @@ public class BehaviorController extends BaseContoller {
      */
     @RequestMapping(value = "/statePattern")
     public Result<String> statePattern() {
-        com.dfliu.patterns.service.state.Context context = new com.dfliu.patterns.service.state.Context();
-        context.setCurrentByState(EState.CHILD);
-        context.work();
-        context.work();
-        context.work();
+//        //状态模式01
+//        com.dfliu.patterns.service.state.Context context = new com.dfliu.patterns.service.state.Context();
+//        context.setCurrentByState(EState.CHILD);
+//        context.work();
+//        context.work();
+//        context.work();
+        //状态模式02
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        mediaPlayer.play();
+        mediaPlayer.pause();
+        mediaPlayer.play();
+        mediaPlayer.stop();
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "状态模式示例");
         return build;

@@ -2,15 +2,15 @@ package com.dfliu.patterns.service.state.plus;
 
 public class MediaPlayer {
     public MediaPlayerState getPlayingState() {
-        return playingState;
+        return this.playingState;
     }
 
     public MediaPlayerState getPauseState() {
-        return pauseState;
+        return this.pauseState;
     }
 
     public MediaPlayerState getStoppedState() {
-        return stoppedState;
+        return this.stoppedState;
     }
 
     private MediaPlayerState playingState;
@@ -20,9 +20,9 @@ public class MediaPlayer {
     private MediaPlayerState currentState;
 
     public MediaPlayer() {
-        this.playingState = new PlayingState();
-        this.pauseState = new PausedState();
-        this.stoppedState = new StoppedState();
+        this.playingState = new PlayingState(this);
+        this.pauseState = new PausedState(this);
+        this.stoppedState = new StoppedState(this);
 
         this.currentState = this.stoppedState;
     }
