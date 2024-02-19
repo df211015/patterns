@@ -13,6 +13,9 @@ public class Manager extends Employee {
 
     @Override
     public void accept(IVisitor visitor) {
+        if (null == visitor) {
+            return;
+        }
         visitor.visit(this);
     }
 }
