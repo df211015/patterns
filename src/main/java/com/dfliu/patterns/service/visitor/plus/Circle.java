@@ -18,6 +18,6 @@ public class Circle extends Dot {
 
     @Override
     public String accept(Visitor visitor) {
-        return null;
+        return visitor.visitCircle(this);
     }
 }
