@@ -4,7 +4,7 @@ import com.dfliu.patterns.domain.constants.ResponseType;
 
 public class SonHandler extends Handler {
     public SonHandler() {
-        super(ResponseType.SON.getCode());
+        super(ResponseType.SON.getCode(), 30);
     }
 
     @Override

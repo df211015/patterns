@@ -34,10 +34,8 @@ import jdk.internal.org.objectweb.asm.Handle;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 行为型模式
@@ -72,9 +70,17 @@ public class BehaviorController extends BaseContoller {
         Handler son = new SonHandler();
         Handler husband = new HusbandHandler();
         Handler father = new FatherHandler();
-        son.setNextHandler(husband);
-        husband.setNextHandler(father);
-        son.handler(women);
+        List<Handler> lstHandler = Arrays.asList(son, husband, father);
+        List<Handler> collect = lstHandler.stream().sorted(Comparator.comparing(Handler::getOrderNo)).collect(Collectors.toList());
+        Handler head = collect.get(0);
+        Handler tmp = head;
+        for (Handler h : collect) {
+            if (tmp != h) {
+                tmp.setNextHandler(h);
+                tmp = h;
+            }
+        }
+        head.handler(women);
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "职责链模式示例");
         return build;

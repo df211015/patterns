@@ -4,7 +4,7 @@ import com.dfliu.patterns.domain.constants.ResponseType;
 
 public class HusbandHandler extends Handler {
     public HusbandHandler() {
-        super(ResponseType.HUSBAND.getCode());
+        super(ResponseType.HUSBAND.getCode(), 20);
     }
 
     @Override

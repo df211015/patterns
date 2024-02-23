@@ -4,12 +4,19 @@ public abstract class Handler {
     private Integer requestType;
     private Handler nextHandler;
 
+    public Integer getOrderNo() {
+        return orderNo;
+    }
+
+    private Integer orderNo;
+
     public void setNextHandler(Handler nextHandler) {
         this.nextHandler = nextHandler;
     }
 
-    public Handler(Integer requestType) {
+    public Handler(Integer requestType, Integer orderNo) {
         this.requestType = requestType;
+        this.orderNo = orderNo;
     }
 
     public void handler(IWomen women) {
