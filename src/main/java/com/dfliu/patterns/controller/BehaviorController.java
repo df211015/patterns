@@ -1,8 +1,8 @@
 package com.dfliu.patterns.controller;
 
-import com.dfliu.patterns.domain.constants.EState;
 import com.dfliu.patterns.domain.constants.ResponseType;
 import com.dfliu.patterns.domain.constants.ResultCode;
+import com.dfliu.patterns.domain.dto.Passenger;
 import com.dfliu.patterns.domain.dto.Result;
 import com.dfliu.patterns.service.chain.*;
 import com.dfliu.patterns.service.command.AbsCommand;
@@ -12,6 +12,7 @@ import com.dfliu.patterns.service.command.IReceive;
 import com.dfliu.patterns.service.interpreter.AndExpression;
 import com.dfliu.patterns.service.interpreter.Expression;
 import com.dfliu.patterns.service.interpreter.TerminalExpression;
+import com.dfliu.patterns.service.interpreterplus.Free;
 import com.dfliu.patterns.service.mediator.*;
 import com.dfliu.patterns.service.memento.Caretaker;
 import com.dfliu.patterns.service.memento.Memento;
@@ -19,8 +20,6 @@ import com.dfliu.patterns.service.memento.Originator;
 import com.dfliu.patterns.service.servant.IServiced;
 import com.dfliu.patterns.service.servant.Servant;
 import com.dfliu.patterns.service.servant.Service1;
-import com.dfliu.patterns.service.state.ChildWorkState;
-import com.dfliu.patterns.service.state.WorkState;
 import com.dfliu.patterns.service.state.plus.MediaPlayer;
 import com.dfliu.patterns.service.strategy.ConcreteStrategy2;
 import com.dfliu.patterns.service.strategy.Context;
@@ -28,9 +27,7 @@ import com.dfliu.patterns.service.subscribe.ObserverOf163;
 import com.dfliu.patterns.service.subscribe.SubjectOf163;
 import com.dfliu.patterns.service.template.AbsAnimal;
 import com.dfliu.patterns.service.template.Dog;
-import com.dfliu.patterns.service.visitor.*;
 import com.dfliu.patterns.service.visitor.plus.*;
-import jdk.internal.org.objectweb.asm.Handle;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -247,6 +244,37 @@ public class BehaviorController extends BaseContoller {
         System.out.println(String.format("musicAndMath:%s", musicAndMath ? "匹配" : "不匹配"));
 
         Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "解释器模式示例");
+        return build;
+    }
+
+    /**
+     * 解释器模式plus示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/interpretPlusPattern")
+    public Result<String> interpretPlusPattern() {
+        //定义乘客集合
+        List<Passenger> list = new ArrayList<>();
+        Passenger p1 = new Passenger("张三", 65, 170.0);
+        Passenger p2 = new Passenger("李四", 10, 130.0);
+        Passenger p3 = new Passenger("王五", 50, 170.0);
+        list.add(p1);
+        list.add(p2);
+        list.add(p3);
+
+        //所有年龄大于等于65或者身高小于等于130的乘客免费乘车
+        for (Passenger p : list) {
+            //定义免费标准
+            Free free = new Free(65, 130);
+            //满足条件则免费
+            if (free.result(p.getAge(), p.getHeight())) {
+                System.out.println(p.getName() + "：免费");
+            } else {
+                System.out.println(p.getName() + "：请刷卡或投币");
+            }
+        }
+        Result<String> build = super.buildReslt(ResultCode.SUCCESSEXT, "解释器模式plus示例");
         return build;
     }
 
