@@ -18,5 +18,6 @@ public enum Compare {
     /**
      * 较小
      */
-    LT
+    LT,
+    ;
 }

@@ -1,5 +1,6 @@
 package com.dfliu.patterns.controller;
 
+import com.dfliu.patterns.domain.constants.Compare;
 import com.dfliu.patterns.domain.constants.ResponseType;
 import com.dfliu.patterns.domain.constants.ResultCode;
 import com.dfliu.patterns.domain.dto.Passenger;
